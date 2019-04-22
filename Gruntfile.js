@@ -1,5 +1,14 @@
 var path = require("path");
 module.exports = function(grunt) {
+	var exampleFile = grunt.option("example");
+	var exampleOverride = exampleFile ? {
+		resolve: {
+			alias: {
+				'example.json': path.resolve(exampleFile)
+			}
+		}
+	} : {};
+
 	require("matchdep").filterAll("grunt-*").forEach(grunt.loadNpmTasks);
 	var webpack = require("webpack");
 	grunt.initConfig({
@@ -22,7 +31,8 @@ module.exports = function(grunt) {
 				port: 8080,
 				keepAlive: true,
 				webpack: merge(require("./webpack.config.js"), {
-					devtool: "eval"
+					devtool: "eval",
+					...exampleOverride
 				})
 			}
 		},

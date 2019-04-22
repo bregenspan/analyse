@@ -2,6 +2,11 @@ var path = require("path");
 module.exports = {
 	cache: true,
 	entry: "./app/entry.js",
+	resolve: {
+		alias: {
+			"example.json": path.resolve("./app/pages/upload/example.json")
+		}
+	},
 	output: {
 		path: path.join(__dirname, "dist"),
 		publicPath: "",

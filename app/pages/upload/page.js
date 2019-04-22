@@ -9,7 +9,7 @@ module.exports = function() {
 	$("#example").click(loadFromExample);
 
 	function loadFromExample() {
-		require(["./example.json"], function(example) {
+		require(["example.json"], function(example) {
 			app.load(example);
 			$(".modal").modal("hide");
 			app.loadPage.apply(app, nextPage);
